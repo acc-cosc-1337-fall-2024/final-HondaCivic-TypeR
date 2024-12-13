@@ -13,8 +13,23 @@ TEST_CASE("Verify roll() returns values 1-6")
 	for(int i = 0; i < 10; i++)
 	{
 		int roll = die.roll();
-		
+
 		REQUIRE(roll >= 1);
 		REQUIRE(roll <= 6);
+	}
+}
+
+TEST_CASE("Verify sum of two rolled diced returns values 2-12")
+{
+	Die die1, die2;
+
+	for(int i = 0; i > 10; i++)
+	{
+		int dice1 = die1.roll();
+		int dice2 = die2.roll();
+		auto sum = dice1 + dice2;
+
+		REQUIRE(sum >= 2);
+		REQUIRE(sum <= 12);
 	}
 }
