@@ -105,3 +105,46 @@ TEST_CASE("Verify PointPhase Outcomes")
         REQUIRE(outcome == RollOutcome::nopoint);
     }
 }
+
+TEST_CASE("Verify Phase Variants return the correct Enums")
+{
+	Die die1, die2;
+	Roll roll(die1,die2);
+	Roll* R = &roll;
+	Come_Out_Phase C;
+	int x=10,i=0;
+	while(i!=x)
+	{
+		i++;
+		R->roll_dice();
+		
+		if(C.get_outcome(R) == RollOutcome::point)
+		{
+			REQUIRE(C.get_outcome(R) == RollOutcome::point);	
+		}
+		else if(C.get_outcome(R) == RollOutcome::craps)
+		{
+			REQUIRE(C.get_outcome(R) == RollOutcome::craps);
+		}
+		else
+		REQUIRE(C.get_outcome(R) == RollOutcome::natural);
+	}
+	Point_Phase P(7);
+	x=10;i=0;
+	while(i!=x)
+	{
+		i++;
+		R->roll_dice();
+		
+		if(P.get_outcome(R) == RollOutcome::point)
+		{
+			REQUIRE(P.get_outcome(R) == RollOutcome::point);
+		}
+		else if(P.get_outcome(R) == RollOutcome::nopoint)
+		{
+			REQUIRE(P.get_outcome(R) == RollOutcome::nopoint);
+		}
+		else
+		REQUIRE(P.get_outcome(R) == RollOutcome::seven_out);
+	}
+}
