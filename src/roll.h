@@ -15,4 +15,5 @@ private:
     Die& die2;
     int rolled_value;
 };
-#endif;
+
+#endif
